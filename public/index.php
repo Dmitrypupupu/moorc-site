@@ -6,6 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Router;
 use App\Database;
+use App\View;
 use App\Controllers\HomeController;
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -47,5 +48,37 @@ $router->get('/db-test', function () {
         'message' => $message,
     ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 });
+
+// Static pages
+$router->get('/about', fn() => View::render('pages/about', [
+    'title'   => 'О МООРС',
+    'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+    'env'     => $_ENV['APP_ENV'] ?? 'local',
+]));
+$router->get('/news', fn() => View::render('pages/news', [
+    'title'   => 'Новости',
+    'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+    'env'     => $_ENV['APP_ENV'] ?? 'local',
+]));
+$router->get('/calendar', fn() => View::render('pages/calendar', [
+    'title'   => 'Календарь соревнований',
+    'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+    'env'     => $_ENV['APP_ENV'] ?? 'local',
+]));
+$router->get('/rating', fn() => View::render('pages/rating', [
+    'title'   => 'Рейтинг',
+    'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+    'env'     => $_ENV['APP_ENV'] ?? 'local',
+]));
+$router->get('/membership', fn() => View::render('pages/membership', [
+    'title'   => 'Членство',
+    'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+    'env'     => $_ENV['APP_ENV'] ?? 'local',
+]));
+$router->get('/contacts', fn() => View::render('pages/contacts', [
+    'title'   => 'Контакты',
+    'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+    'env'     => $_ENV['APP_ENV'] ?? 'local',
+]));
 
 $router->dispatch();
