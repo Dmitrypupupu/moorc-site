@@ -19,7 +19,7 @@ class Database
             $pass    = $_ENV['DB_PASSWORD'] ?? 'moorc';
             $sslmode = $_ENV['DB_SSLMODE'] ?? 'prefer';
 
-            $dsn = "pgsql:host={\$host};port={\$port};dbname={\$db};sslmode={\$sslmode}";
+            $dsn = "pgsql:host=$host;port=$port;dbname=$db;sslmode=$sslmode";
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
