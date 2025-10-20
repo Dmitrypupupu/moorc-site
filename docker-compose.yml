@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: moorc_db
+    environment:
+      POSTGRES_USER: moorc
+      POSTGRES_PASSWORD: moorc
+      POSTGRES_DB: moorc_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  adminer:
+    image: adminer:4
+    container_name: moorc_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  db-data:

@@ -1,0 +1,12 @@
+# Dependencies
+/vendor/
+node_modules/
+
+# Env
+.env
+
+# OS
+.DS_Store
+
+# Containers
+docker-data/
