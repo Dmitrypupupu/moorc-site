@@ -14,7 +14,7 @@ class CompetitionController
             $pdo = Database::pdo();
             
             // Get upcoming competitions
-            $stmt = $pdo->query('
+            $stmt = $pdo->prepare('
                 SELECT * FROM competitions 
                 WHERE status != ? AND start_date >= CURRENT_DATE
                 ORDER BY start_date ASC

@@ -141,7 +141,7 @@ INSERT INTO public.disciplines (code, name, description, sort_order) VALUES
   ('pyram', 'Пирамидка', 'Пирамидка Мефферта', 11),
   ('skewb', 'Скьюб', 'Скьюб', 12),
   ('sq1', 'Square-1', 'Square-1', 13),
-  ('clock', 'Clock', 'Rubik\'s Clock', 14)
+  ('clock', 'Clock', 'Rubik''s Clock', 14)
 ON CONFLICT (code) DO NOTHING;
 
 COMMIT;
