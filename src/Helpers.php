@@ -68,6 +68,17 @@ class Helpers
     }
 
     /**
+     * Check if current user is admin
+     */
+    public static function isAdmin(): bool
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
+    }
+
+    /**
      * Sanitize HTML output
      */
     public static function e(?string $string): string

@@ -124,6 +124,7 @@ class AuthController
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_name'] = $user['first_name'] . ' ' . $user['last_name'];
+            $_SESSION['is_admin'] = (bool)($user['is_admin'] ?? false);
 
             header('Location: /profile');
             exit;

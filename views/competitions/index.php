@@ -1,8 +1,14 @@
 <?php
 use App\Helpers;
+session_start();
 ?>
 <section>
-  <h1>Календарь соревнований</h1>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h1>Календарь соревнований</h1>
+    <?php if (Helpers::isAdmin()): ?>
+      <a href="/competitions/create" class="btn">+ Создать соревнование</a>
+    <?php endif; ?>
+  </div>
   
   <?php if (!empty($upcoming)): ?>
     <h2>Предстоящие соревнования</h2>

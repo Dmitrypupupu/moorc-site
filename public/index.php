@@ -75,6 +75,8 @@ $router->post('/profile/edit', fn($req) => $profile->update($req));
 
 // Competitions
 $router->get('/competitions', fn() => $competition->index());
+$router->get('/competitions/create', fn() => $competition->create());
+$router->post('/competitions/create', fn($req) => $competition->store($req));
 $router->get('/competitions/{id}', fn($req, $id) => $competition->show((int)$id));
 $router->post('/competitions/{id}/register', fn($req, $id) => $competition->register((int)$id));
 
