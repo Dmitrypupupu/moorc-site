@@ -193,4 +193,123 @@ class CompetitionController
             exit;
         }
     }
+
+    public function create(): string
+    {
+        session_start();
+        
+        if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+            $_SESSION['error'] = 'Недостаточно прав для создания соревнования';
+            header('Location: /competitions');
+            exit;
+        }
+
+        try {
+            $pdo = Database::pdo();
+            
+            // Get all disciplines
+            $stmt = $pdo->query('SELECT * FROM disciplines ORDER BY sort_order');
+            $disciplines = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return View::render('competitions.create', [
+                'title' => 'Создать соревнование',
+                'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+                'env' => $_ENV['APP_ENV'] ?? 'local',
+                'disciplines' => $disciplines,
+            ]);
+        } catch (\Exception $e) {
+            return View::render('error', [
+                'title' => 'Ошибка',
+                'appName' => $_ENV['APP_NAME'] ?? 'МООРС',
+                'env' => $_ENV['APP_ENV'] ?? 'local',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function store(array $request): string
+    {
+        session_start();
+        
+        if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+            $_SESSION['error'] = 'Недостаточно прав для создания соревнования';
+            header('Location: /competitions');
+            exit;
+        }
+
+        $name = $request['name'] ?? '';
+        $city = $request['city'] ?? '';
+        $region = $request['region'] ?? '';
+        $venue = $request['venue'] ?? '';
+        $address = $request['address'] ?? '';
+        $startDate = $request['start_date'] ?? '';
+        $endDate = $request['end_date'] ?? '';
+        $registrationOpen = $request['registration_open'] ?? '';
+        $registrationClose = $request['registration_close'] ?? '';
+        $maxParticipants = $request['max_participants'] ?? null;
+        $description = $request['description'] ?? '';
+        $regulationsUrl = $request['regulations_url'] ?? '';
+        $selectedDisciplines = $request['disciplines'] ?? [];
+
+        if (empty($name) || empty($city) || empty($startDate) || empty($endDate)) {
+            $_SESSION['error'] = 'Пожалуйста, заполните все обязательные поля';
+            header('Location: /competitions/create');
+            exit;
+        }
+
+        try {
+            $pdo = Database::pdo();
+            $pdo->beginTransaction();
+
+            // Insert competition
+            $stmt = $pdo->prepare('
+                INSERT INTO competitions (
+                    name, city, region, venue, address, 
+                    start_date, end_date, 
+                    registration_open, registration_close,
+                    max_participants, description, regulations_url, status
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                RETURNING id
+            ');
+            $stmt->execute([
+                $name,
+                $city,
+                $region,
+                $venue,
+                $address,
+                $startDate,
+                $endDate,
+                $registrationOpen ?: null,
+                $registrationClose ?: null,
+                $maxParticipants ?: null,
+                $description,
+                $regulationsUrl,
+                'upcoming'
+            ]);
+            
+            $competitionId = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+
+            // Insert selected disciplines
+            if (!empty($selectedDisciplines)) {
+                $stmt = $pdo->prepare('
+                    INSERT INTO competition_disciplines (competition_id, discipline_id)
+                    VALUES (?, ?)
+                ');
+                foreach ($selectedDisciplines as $disciplineId) {
+                    $stmt->execute([$competitionId, (int)$disciplineId]);
+                }
+            }
+
+            $pdo->commit();
+
+            $_SESSION['success'] = 'Соревнование успешно создано!';
+            header('Location: /competitions/' . $competitionId);
+            exit;
+        } catch (\Exception $e) {
+            $pdo->rollBack();
+            $_SESSION['error'] = 'Ошибка создания соревнования: ' . $e->getMessage();
+            header('Location: /competitions/create');
+            exit;
+        }
+    }
 }
