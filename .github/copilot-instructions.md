@@ -122,8 +122,9 @@ migrations/          # SQL migration files (numbered sequentially)
 
 5. **Migrations**
    - Apply migrations in sequential order: `001_init.sql`, `002_speedcubing_schema.sql`, `003_add_admin_role.sql`
-   - Use `psql` command with `PGPASSWORD` environment variable
-   - Example: `PGPASSWORD=moorc psql -h 127.0.0.1 -p 5433 -U moorc -d moorc_dev -f migrations/001_init.sql`
+   - Use `psql` command to apply migrations
+   - Example: `psql -h 127.0.0.1 -p 5433 -U moorc -d moorc_dev -f migrations/001_init.sql`
+   - Note: Use `.pgpass` file or prompt for password instead of exposing it in command history
 
 ### Database Schema Key Points
 
@@ -220,8 +221,8 @@ When using git commands, **always disable pagers** to avoid interactive output i
 
 ## Special Notes
 
-- Default test admin account: `admin@moorc.ru` / `admin123` (created by migration 003)
-- **Change default admin password in production**
+- A test admin account is created by migration 003 for development purposes only
+- **NEVER use default credentials in production - always change passwords immediately**
 - PostgreSQL runs on port 5433 when using Docker Compose
 - Adminer (database UI) available at http://localhost:8080 when using Docker
 
