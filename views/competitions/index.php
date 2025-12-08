@@ -1,6 +1,5 @@
 <?php
 use App\Helpers;
-session_start();
 ?>
 <section>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">

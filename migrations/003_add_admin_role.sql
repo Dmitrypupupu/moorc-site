@@ -4,8 +4,11 @@ BEGIN;
 ALTER TABLE public.users 
   ADD COLUMN IF NOT EXISTS is_admin BOOLEAN DEFAULT false;
 
--- Create an admin user for testing (password: admin123)
--- You should change this password in production!
+-- Create an admin user for testing
+-- ⚠️ IMPORTANT: Change this password in production!
+-- Default credentials:
+--   Email: admin@moorc.ru
+--   Password: admin123
 INSERT INTO public.users (email, password_hash, first_name, last_name, is_admin)
 VALUES (
   'admin@moorc.ru',
