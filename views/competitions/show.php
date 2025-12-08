@@ -37,15 +37,15 @@ use App\Helpers;
     <?php if (!$userRegistered && $competition['status'] === 'upcoming'): ?>
       <?php
       $now = time();
-      $regOpen = strtotime($competition['registration_open']);
-      $regClose = strtotime($competition['registration_close']);
-      $canRegister = $now >= $regOpen && $now <= $regClose;
+      $regOpen = $competition['registration_open'] ? strtotime($competition['registration_open']) : null;
+      $regClose = $competition['registration_close'] ? strtotime($competition['registration_close']) : null;
+      $canRegister = $regOpen && $regClose && $now >= $regOpen && $now <= $regClose;
       ?>
       <?php if ($canRegister): ?>
         <form method="POST" action="/competitions/<?= $competition['id'] ?>/register">
           <button type="submit" class="btn">Зарегистрироваться</button>
         </form>
-      <?php elseif ($now < $regOpen): ?>
+      <?php elseif ($regOpen && $now < $regOpen): ?>
         <p class="text-muted">Регистрация откроется <?= Helpers::formatDate($competition['registration_open'], 'd.m.Y H:i') ?></p>
       <?php else: ?>
         <p class="text-muted">Регистрация закрыта</p>
