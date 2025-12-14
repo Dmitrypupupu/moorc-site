@@ -1,5 +1,6 @@
-<section>
-  <h2>Контакты</h2>
+<div class="container">
+  <section>
+    <h2>Контакты</h2>
   
   <h3>Связаться с нами:</h3>
   
@@ -31,4 +32,5 @@
   <p>Если вы обнаружили ошибку на сайте или у вас есть предложения по улучшению, напишите на: 
     <a href="mailto:support@moorc.ru">support@moorc.ru</a>
   </p>
-</section>
+  </section>
+</div>

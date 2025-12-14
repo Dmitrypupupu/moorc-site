@@ -27,7 +27,10 @@ unset($_SESSION['success'], $_SESSION['error']);
   <header class="site-header">
     <div class="container">
       <div class="brand">
-        <a href="/"><?= htmlspecialchars($appName) ?></a>
+        <a href="/" style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 2rem;">🧊</span>
+          <span><?= htmlspecialchars($appName) ?></span>
+        </a>
         <?php if ($env !== 'production'): ?>
         <span class="badge">ENV: <?= htmlspecialchars($env) ?></span>
         <?php endif; ?>
@@ -67,8 +70,33 @@ unset($_SESSION['success'], $_SESSION['error']);
 
   <footer class="site-footer">
     <div class="container">
-      <p><strong><?= htmlspecialchars($appName) ?></strong> — Межрегиональная общественная организация развития спидкубинга</p>
-      <p class="text-small">© <?= date('Y') ?> Все права защищены</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; text-align: left;">
+        <div>
+          <h3 style="color: var(--secondary); font-size: 1.25rem; margin-bottom: 1rem;">МООРС</h3>
+          <p style="color: var(--text-light); font-size: 0.875rem;">Межрегиональная общественная организация развития спидкубинга</p>
+        </div>
+        <div>
+          <h4 style="color: var(--secondary); font-size: 1rem; margin-bottom: 0.75rem;">Навигация</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.875rem;">
+            <li style="margin-bottom: 0.5rem;"><a href="/about">О федерации</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="/competitions">Соревнования</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="/rating">Рейтинг</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="/documents">Документы</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: var(--secondary); font-size: 1rem; margin-bottom: 0.75rem;">Контакты</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.875rem;">
+            <li style="margin-bottom: 0.5rem;"><a href="mailto:info@moorc.ru">info@moorc.ru</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="/contacts">Все контакты</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="/membership">Членство</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; text-align: center;">
+        <p style="margin: 0; font-size: 0.875rem;"><strong><?= htmlspecialchars($appName) ?></strong> — Межрегиональная общественная организация развития спидкубинга</p>
+        <p style="margin: 0.5rem 0 0; font-size: 0.875rem;">© <?= date('Y') ?> Все права защищены</p>
+      </div>
     </div>
   </footer>
 </body>

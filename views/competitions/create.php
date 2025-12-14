@@ -1,8 +1,9 @@
 <?php
 use App\Helpers;
 ?>
-<section>
-  <h1>Создать новое соревнование</h1>
+<div class="container">
+  <section style="max-width: 800px; margin: 2rem auto;">
+    <h1>Создать новое соревнование</h1>
   
   <?php if (isset($_SESSION['error'])): ?>
     <div class="alert alert-error">
@@ -73,7 +74,8 @@ use App\Helpers;
       <a href="/competitions" class="btn btn-secondary">Отмена</a>
     </div>
   </form>
-</section>
+  </section>
+</div>
 
 <style>
   .disciplines-grid {
