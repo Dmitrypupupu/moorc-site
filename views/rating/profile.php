@@ -69,6 +69,6 @@ use App\Helpers;
     </table>
   <?php endif; ?>
   
-  <p class="mt-2"><a href="/rating">&larr; Вернуться к рейтингу</a></p>
+  <p><a href="/rating" class="back-link">Вернуться к рейтингу</a></p>
   </section>
 </div>

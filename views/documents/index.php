@@ -8,8 +8,9 @@ $categoryNames = [
     'other' => 'Прочее',
 ];
 ?>
-<section>
-  <h1>Документы</h1>
+<div class="container">
+  <section>
+    <h1>Документы</h1>
   
   <?php if (!empty($documents)): ?>
     <?php foreach ($documents as $category => $docs): ?>
@@ -37,4 +38,5 @@ $categoryNames = [
   <?php else: ?>
     <p>Документы пока не добавлены.</p>
   <?php endif; ?>
-</section>
+  </section>
+</div>

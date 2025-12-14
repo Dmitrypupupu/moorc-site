@@ -78,6 +78,6 @@ use App\Helpers;
     <p><a href="<?= Helpers::e($competition['regulations_url']) ?>" target="_blank">Регламент соревнований</a></p>
   <?php endif; ?>
   
-  <p class="mt-2"><a href="/competitions">&larr; Вернуться к календарю</a></p>
+  <p><a href="/competitions" class="back-link">Вернуться к календарю</a></p>
   </section>
 </div>
