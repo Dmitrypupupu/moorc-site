@@ -42,30 +42,33 @@ unset($_SESSION['success'], $_SESSION['error']);
         <a href="/membership">Членство</a>
         <a href="/contacts">Контакты</a>
         <?php if ($isAuthenticated): ?>
-          <a href="/profile">Личный кабинет</a>
+          <a href="/profile" style="color: var(--primary); font-weight: 600;">Личный кабинет</a>
           <a href="/logout">Выход</a>
         <?php else: ?>
           <a href="/login">Вход</a>
-          <a href="/register">Регистрация</a>
+          <a href="/register" style="color: var(--primary); font-weight: 600;">Регистрация</a>
         <?php endif; ?>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <?php if ($success): ?>
-      <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
-    <?php endif; ?>
-    <?php if ($error): ?>
-      <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
+  <main>
+    <div class="container">
+      <?php if ($success): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+      <?php endif; ?>
+      <?php if ($error): ?>
+        <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
+      <?php endif; ?>
+    </div>
     
     <?= $content ?? '' ?>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <small>© <?= date('Y') ?> <?= htmlspecialchars($appName) ?> — Межрегиональная общественная организация развития спидкубинга</small>
+      <p><strong><?= htmlspecialchars($appName) ?></strong> — Межрегиональная общественная организация развития спидкубинга</p>
+      <p class="text-small">© <?= date('Y') ?> Все права защищены</p>
     </div>
   </footer>
 </body>
