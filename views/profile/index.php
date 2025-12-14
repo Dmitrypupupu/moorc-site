@@ -1,8 +1,9 @@
 <?php
 use App\Helpers;
 ?>
-<section>
-  <h1>Личный кабинет</h1>
+<div class="container">
+  <section>
+    <h1>Личный кабинет</h1>
   
   <div class="card">
     <h3><?= Helpers::e($user['first_name'] . ' ' . $user['last_name']) ?></h3>
@@ -38,8 +39,8 @@ use App\Helpers;
         <?php foreach ($personalBests as $pb): ?>
           <tr>
             <td><?= Helpers::e($pb['discipline_name']) ?></td>
-            <td><?= Helpers::formatTime($pb['best_single']) ?></td>
-            <td><?= Helpers::formatTime($pb['best_average']) ?></td>
+            <td class="time-value"><?= Helpers::formatTime($pb['best_single']) ?></td>
+            <td class="time-value"><?= Helpers::formatTime($pb['best_average']) ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -68,8 +69,8 @@ use App\Helpers;
             </td>
             <td><?= Helpers::formatDate($result['start_date']) ?></td>
             <td><?= Helpers::e($result['discipline_name']) ?></td>
-            <td><?= Helpers::formatTime($result['best']) ?></td>
-            <td><?= Helpers::formatTime($result['average']) ?></td>
+            <td class="time-value"><?= Helpers::formatTime($result['best']) ?></td>
+            <td class="time-value"><?= Helpers::formatTime($result['average']) ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -77,4 +78,5 @@ use App\Helpers;
   <?php else: ?>
     <p class="mt-2">У вас пока нет результатов. <a href="/competitions">Зарегистрируйтесь на соревнование!</a></p>
   <?php endif; ?>
-</section>
+  </section>
+</div>

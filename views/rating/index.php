@@ -57,8 +57,8 @@ use App\Helpers;
                   <span class="text-small text-muted">, <?= Helpers::e($rank['region']) ?></span>
                 <?php endif; ?>
               </td>
-              <td><?= Helpers::formatTime($rank['best_single']) ?></td>
-              <td><?= Helpers::formatTime($rank['best_average']) ?></td>
+              <td class="time-value"><?= Helpers::formatTime($rank['best_single']) ?></td>
+              <td class="time-value"><?= Helpers::formatTime($rank['best_average']) ?></td>
               <td><?= $rank['competitions_count'] ?></td>
             </tr>
           <?php endforeach; ?>

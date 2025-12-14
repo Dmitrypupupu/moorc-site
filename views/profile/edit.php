@@ -1,9 +1,11 @@
 <?php
 use App\Helpers;
 ?>
-<section>
-  <h2>Редактировать профиль</h2>
-  <form method="POST" action="/profile/edit">
+<div class="container">
+  <section style="max-width: 600px; margin: 2rem auto;">
+    <h2>Редактировать профиль</h2>
+    <div class="form-card">
+      <form method="POST" action="/profile/edit">
     <div class="form-group">
       <label for="first_name">Имя *</label>
       <input type="text" id="first_name" name="first_name" value="<?= Helpers::e($user['first_name']) ?>" required>
@@ -35,6 +37,8 @@ use App\Helpers;
     </div>
     
     <button type="submit">Сохранить</button>
-    <a href="/profile" class="btn btn-secondary">Отмена</a>
-  </form>
-</section>
+    <a href="/profile" class="btn btn-secondary" style="margin-left: 0.5rem;">Отмена</a>
+      </form>
+    </div>
+  </section>
+</div>

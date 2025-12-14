@@ -1,8 +1,9 @@
 <?php
 use App\Helpers;
 ?>
-<section>
-  <h1><?= Helpers::e($user['first_name'] . ' ' . $user['last_name']) ?></h1>
+<div class="container">
+  <section>
+    <h1><?= Helpers::e($user['first_name'] . ' ' . $user['last_name']) ?></h1>
   
   <div class="card">
     <?php if ($user['city']): ?>
@@ -38,8 +39,8 @@ use App\Helpers;
                 <?= Helpers::e($pb['discipline_name']) ?>
               </a>
             </td>
-            <td><?= Helpers::formatTime($pb['best_single']) ?></td>
-            <td><?= Helpers::formatTime($pb['best_average']) ?></td>
+            <td class="time-value"><?= Helpers::formatTime($pb['best_single']) ?></td>
+            <td class="time-value"><?= Helpers::formatTime($pb['best_average']) ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -69,4 +70,5 @@ use App\Helpers;
   <?php endif; ?>
   
   <p class="mt-2"><a href="/rating">&larr; Вернуться к рейтингу</a></p>
-</section>
+  </section>
+</div>

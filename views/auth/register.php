@@ -1,7 +1,8 @@
 <div class="container">
   <section style="max-width: 500px; margin: 3rem auto;">
     <h2 style="text-align: center; margin-bottom: 2rem;">Регистрация</h2>
-    <form method="POST" action="/register">
+    <div class="form-card">
+      <form method="POST" action="/register">
       <div class="form-group">
         <label for="email">Email *</label>
         <input type="email" id="email" name="email" required>
@@ -46,6 +47,7 @@
       <p class="text-small text-muted" style="text-align: center; margin-top: 1rem;">
         Уже есть аккаунт? <a href="/login">Войти</a>
       </p>
-    </form>
+      </form>
+    </div>
   </section>
 </div>

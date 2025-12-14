@@ -14,7 +14,7 @@ use App\Helpers;
       <h2 style="margin-bottom: 1.5rem;">Предстоящие соревнования</h2>
       <div class="grid">
         <?php foreach ($upcoming as $comp): ?>
-          <div class="card">
+          <div class="card competition-card">
             <h3 class="card-title">
               <a href="/competitions/<?= $comp['id'] ?>"><?= Helpers::e($comp['name']) ?></a>
             </h3>
@@ -28,9 +28,9 @@ use App\Helpers;
               <p><strong>Место:</strong> <?= Helpers::e($comp['venue']) ?></p>
             <?php endif; ?>
             <?php if ($comp['status']): ?>
-              <p class="text-small text-muted">Статус: <?= Helpers::e($comp['status']) ?></p>
+              <span class="status-badge upcoming"><?= Helpers::e($comp['status']) ?></span>
             <?php endif; ?>
-            <a href="/competitions/<?= $comp['id'] ?>" class="btn">Подробнее</a>
+            <a href="/competitions/<?= $comp['id'] ?>" class="btn" style="margin-top: 1rem;">Подробнее</a>
           </div>
         <?php endforeach; ?>
       </div>
